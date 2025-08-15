@@ -1,4 +1,4 @@
-module github.com/hexdigest/gowrap/templates_tests
+module github.com/adlandh/gowrap/templates_tests
 
 go 1.22
 

@@ -15,7 +15,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"golang.org/x/tools/go/packages"
 
-	"github.com/hexdigest/gowrap/pkg"
+	"github.com/adlandh/gowrap/pkg"
 )
 
 func Test_unquote(t *testing.T) {

@@ -17,8 +17,8 @@ import (
 	"golang.org/x/tools/go/packages"
 	"golang.org/x/tools/imports"
 
-	"github.com/hexdigest/gowrap/pkg"
-	"github.com/hexdigest/gowrap/printer"
+	"github.com/adlandh/gowrap/pkg"
+	"github.com/adlandh/gowrap/printer"
 )
 
 // Generator generates decorators for the interface types

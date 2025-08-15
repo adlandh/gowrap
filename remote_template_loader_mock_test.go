@@ -3,7 +3,7 @@ package gowrap
 /*
 DO NOT EDIT!
 This code was generated automatically using github.com/gojuno/minimock v1.9
-The original interface "remoteTemplateLoader" can be found in github.com/hexdigest/gowrap
+The original interface "remoteTemplateLoader" can be found in github.com/adlandh/gowrap
 */
 import (
 	"sync/atomic"
@@ -13,7 +13,7 @@ import (
 	testify_assert "github.com/stretchr/testify/assert"
 )
 
-//remoteTemplateLoaderMock implements github.com/hexdigest/gowrap.remoteTemplateLoader
+// remoteTemplateLoaderMock implements github.com/adlandh/gowrap.remoteTemplateLoader
 type remoteTemplateLoaderMock struct {
 	t minimock.Tester
 
@@ -28,7 +28,7 @@ type remoteTemplateLoaderMock struct {
 	LoadMock       mremoteTemplateLoaderMockLoad
 }
 
-//newRemoteTemplateLoaderMock returns a mock for github.com/hexdigest/gowrap.remoteTemplateLoader
+// newRemoteTemplateLoaderMock returns a mock for github.com/adlandh/gowrap.remoteTemplateLoader
 func newRemoteTemplateLoaderMock(t minimock.Tester) *remoteTemplateLoaderMock {
 	m := &remoteTemplateLoaderMock{t: t}
 
@@ -46,7 +46,7 @@ type mremoteTemplateLoaderMockList struct {
 	mock *remoteTemplateLoaderMock
 }
 
-//Return sets up a mock for remoteTemplateLoader.List to return Return's arguments
+// Return sets up a mock for remoteTemplateLoader.List to return Return's arguments
 func (m *mremoteTemplateLoaderMockList) Return(r []string, r1 error) *remoteTemplateLoaderMock {
 	m.mock.ListFunc = func() ([]string, error) {
 		return r, r1
@@ -54,14 +54,14 @@ func (m *mremoteTemplateLoaderMockList) Return(r []string, r1 error) *remoteTemp
 	return m.mock
 }
 
-//Set uses given function f as a mock of remoteTemplateLoader.List method
+// Set uses given function f as a mock of remoteTemplateLoader.List method
 func (m *mremoteTemplateLoaderMockList) Set(f func() (r []string, r1 error)) *remoteTemplateLoaderMock {
 	m.mock.ListFunc = f
 
 	return m.mock
 }
 
-//List implements github.com/hexdigest/gowrap.remoteTemplateLoader interface
+// List implements github.com/adlandh/gowrap.remoteTemplateLoader interface
 func (m *remoteTemplateLoaderMock) List() (r []string, r1 error) {
 	atomic.AddUint64(&m.ListPreCounter, 1)
 	defer atomic.AddUint64(&m.ListCounter, 1)
@@ -74,12 +74,12 @@ func (m *remoteTemplateLoaderMock) List() (r []string, r1 error) {
 	return m.ListFunc()
 }
 
-//ListMinimockCounter returns a count of remoteTemplateLoaderMock.ListFunc invocations
+// ListMinimockCounter returns a count of remoteTemplateLoaderMock.ListFunc invocations
 func (m *remoteTemplateLoaderMock) ListMinimockCounter() uint64 {
 	return atomic.LoadUint64(&m.ListCounter)
 }
 
-//ListMinimockPreCounter returns the value of remoteTemplateLoaderMock.List invocations
+// ListMinimockPreCounter returns the value of remoteTemplateLoaderMock.List invocations
 func (m *remoteTemplateLoaderMock) ListMinimockPreCounter() uint64 {
 	return atomic.LoadUint64(&m.ListPreCounter)
 }
@@ -95,18 +95,18 @@ type mremoteTemplateLoaderMockLoad struct {
 	mockExpectations *remoteTemplateLoaderMockLoadParams
 }
 
-//remoteTemplateLoaderMockLoadParams represents input parameters of the remoteTemplateLoader.Load
+// remoteTemplateLoaderMockLoadParams represents input parameters of the remoteTemplateLoader.Load
 type remoteTemplateLoaderMockLoadParams struct {
 	p string
 }
 
-//Expect sets up expected params for the remoteTemplateLoader.Load
+// Expect sets up expected params for the remoteTemplateLoader.Load
 func (m *mremoteTemplateLoaderMockLoad) Expect(p string) *mremoteTemplateLoaderMockLoad {
 	m.mockExpectations = &remoteTemplateLoaderMockLoadParams{p}
 	return m
 }
 
-//Return sets up a mock for remoteTemplateLoader.Load to return Return's arguments
+// Return sets up a mock for remoteTemplateLoader.Load to return Return's arguments
 func (m *mremoteTemplateLoaderMockLoad) Return(r []byte, r1 string, r2 error) *remoteTemplateLoaderMock {
 	m.mock.LoadFunc = func(p string) ([]byte, string, error) {
 		return r, r1, r2
@@ -114,14 +114,14 @@ func (m *mremoteTemplateLoaderMockLoad) Return(r []byte, r1 string, r2 error) *r
 	return m.mock
 }
 
-//Set uses given function f as a mock of remoteTemplateLoader.Load method
+// Set uses given function f as a mock of remoteTemplateLoader.Load method
 func (m *mremoteTemplateLoaderMockLoad) Set(f func(p string) (r []byte, r1 string, r2 error)) *remoteTemplateLoaderMock {
 	m.mock.LoadFunc = f
 	m.mockExpectations = nil
 	return m.mock
 }
 
-//Load implements github.com/hexdigest/gowrap.remoteTemplateLoader interface
+// Load implements github.com/adlandh/gowrap.remoteTemplateLoader interface
 func (m *remoteTemplateLoaderMock) Load(p string) (r []byte, r1 string, r2 error) {
 	atomic.AddUint64(&m.LoadPreCounter, 1)
 	defer atomic.AddUint64(&m.LoadCounter, 1)
@@ -146,12 +146,12 @@ func (m *remoteTemplateLoaderMock) Load(p string) (r []byte, r1 string, r2 error
 	return m.LoadFunc(p)
 }
 
-//LoadMinimockCounter returns a count of remoteTemplateLoaderMock.LoadFunc invocations
+// LoadMinimockCounter returns a count of remoteTemplateLoaderMock.LoadFunc invocations
 func (m *remoteTemplateLoaderMock) LoadMinimockCounter() uint64 {
 	return atomic.LoadUint64(&m.LoadCounter)
 }
 
-//LoadMinimockPreCounter returns the value of remoteTemplateLoaderMock.Load invocations
+// LoadMinimockPreCounter returns the value of remoteTemplateLoaderMock.Load invocations
 func (m *remoteTemplateLoaderMock) LoadMinimockPreCounter() uint64 {
 	return atomic.LoadUint64(&m.LoadPreCounter)
 }
@@ -162,7 +162,7 @@ func (m *remoteTemplateLoaderMock) minimockCheckLoadCalled(f func(...interface{}
 	}
 }
 
-//MinimockFinish checks that all mocked methods of the interface have been called at least once
+// MinimockFinish checks that all mocked methods of the interface have been called at least once
 func (m *remoteTemplateLoaderMock) MinimockFinish() {
 	m.minimockCheck(m.t.Fatal)
 }
@@ -173,8 +173,8 @@ func (m *remoteTemplateLoaderMock) minimockCheck(f func(...interface{})) {
 
 }
 
-//MinimockWait waits for all mocked methods to be called at least once
-//this method is called by minimock.Controller
+// MinimockWait waits for all mocked methods to be called at least once
+// this method is called by minimock.Controller
 func (m *remoteTemplateLoaderMock) MinimockWait(timeout time.Duration) {
 	timeoutCh := time.After(timeout)
 	for {
@@ -193,8 +193,8 @@ func (m *remoteTemplateLoaderMock) MinimockWait(timeout time.Duration) {
 	}
 }
 
-//AllMocksCalled returns true if all mocked methods were called before the execution of AllMocksCalled,
-//it can be used with assert/require, i.e. assert.True(mock.AllMocksCalled())
+// AllMocksCalled returns true if all mocked methods were called before the execution of AllMocksCalled,
+// it can be used with assert/require, i.e. assert.True(mock.AllMocksCalled())
 func (m *remoteTemplateLoaderMock) AllMocksCalled() bool {
 	result := true
 	result = result && (m.ListFunc == nil || atomic.LoadUint64(&m.ListCounter) > 0)

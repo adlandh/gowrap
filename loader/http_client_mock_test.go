@@ -3,7 +3,7 @@ package loader
 /*
 DO NOT EDIT!
 This code was generated automatically using github.com/gojuno/minimock v1.9
-The original interface "httpClient" can be found in github.com/hexdigest/gowrap/loader
+The original interface "httpClient" can be found in github.com/adlandh/gowrap/loader
 */
 import (
 	http "net/http"
@@ -15,7 +15,7 @@ import (
 	testify_assert "github.com/stretchr/testify/assert"
 )
 
-//httpClientMock implements github.com/hexdigest/gowrap/loader.httpClient
+// httpClientMock implements github.com/adlandh/gowrap/loader.httpClient
 type httpClientMock struct {
 	t minimock.Tester
 
@@ -25,7 +25,7 @@ type httpClientMock struct {
 	DoMock       mhttpClientMockDo
 }
 
-//newHTTPClientMock returns a mock for github.com/hexdigest/gowrap/loader.httpClient
+// newHTTPClientMock returns a mock for github.com/adlandh/gowrap/loader.httpClient
 func newHTTPClientMock(t minimock.Tester) *httpClientMock {
 	m := &httpClientMock{t: t}
 
@@ -43,18 +43,18 @@ type mhttpClientMockDo struct {
 	mockExpectations *httpClientMockDoParams
 }
 
-//httpClientMockDoParams represents input parameters of the httpClient.Do
+// httpClientMockDoParams represents input parameters of the httpClient.Do
 type httpClientMockDoParams struct {
 	p *http.Request
 }
 
-//Expect sets up expected params for the httpClient.Do
+// Expect sets up expected params for the httpClient.Do
 func (m *mhttpClientMockDo) Expect(p *http.Request) *mhttpClientMockDo {
 	m.mockExpectations = &httpClientMockDoParams{p}
 	return m
 }
 
-//Return sets up a mock for httpClient.Do to return Return's arguments
+// Return sets up a mock for httpClient.Do to return Return's arguments
 func (m *mhttpClientMockDo) Return(r *http.Response, r1 error) *httpClientMock {
 	m.mock.DoFunc = func(p *http.Request) (*http.Response, error) {
 		return r, r1
@@ -62,14 +62,14 @@ func (m *mhttpClientMockDo) Return(r *http.Response, r1 error) *httpClientMock {
 	return m.mock
 }
 
-//Set uses given function f as a mock of httpClient.Do method
+// Set uses given function f as a mock of httpClient.Do method
 func (m *mhttpClientMockDo) Set(f func(p *http.Request) (r *http.Response, r1 error)) *httpClientMock {
 	m.mock.DoFunc = f
 	m.mockExpectations = nil
 	return m.mock
 }
 
-//Do implements github.com/hexdigest/gowrap/loader.httpClient interface
+// Do implements github.com/adlandh/gowrap/loader.httpClient interface
 func (m *httpClientMock) Do(p *http.Request) (r *http.Response, r1 error) {
 	atomic.AddUint64(&m.DoPreCounter, 1)
 	defer atomic.AddUint64(&m.DoCounter, 1)
@@ -94,12 +94,12 @@ func (m *httpClientMock) Do(p *http.Request) (r *http.Response, r1 error) {
 	return m.DoFunc(p)
 }
 
-//DoMinimockCounter returns a count of httpClientMock.DoFunc invocations
+// DoMinimockCounter returns a count of httpClientMock.DoFunc invocations
 func (m *httpClientMock) DoMinimockCounter() uint64 {
 	return atomic.LoadUint64(&m.DoCounter)
 }
 
-//DoMinimockPreCounter returns the value of httpClientMock.Do invocations
+// DoMinimockPreCounter returns the value of httpClientMock.Do invocations
 func (m *httpClientMock) DoMinimockPreCounter() uint64 {
 	return atomic.LoadUint64(&m.DoPreCounter)
 }
@@ -110,7 +110,7 @@ func (m *httpClientMock) minimockCheckDoCalled(f func(...interface{})) {
 	}
 }
 
-//MinimockFinish checks that all mocked methods of the interface have been called at least once
+// MinimockFinish checks that all mocked methods of the interface have been called at least once
 func (m *httpClientMock) MinimockFinish() {
 	m.minimockCheck(m.t.Fatal)
 }
@@ -120,8 +120,8 @@ func (m *httpClientMock) minimockCheck(f func(...interface{})) {
 
 }
 
-//MinimockWait waits for all mocked methods to be called at least once
-//this method is called by minimock.Controller
+// MinimockWait waits for all mocked methods to be called at least once
+// this method is called by minimock.Controller
 func (m *httpClientMock) MinimockWait(timeout time.Duration) {
 	timeoutCh := time.After(timeout)
 	for {
@@ -140,8 +140,8 @@ func (m *httpClientMock) MinimockWait(timeout time.Duration) {
 	}
 }
 
-//AllMocksCalled returns true if all mocked methods were called before the execution of AllMocksCalled,
-//it can be used with assert/require, i.e. assert.True(mock.AllMocksCalled())
+// AllMocksCalled returns true if all mocked methods were called before the execution of AllMocksCalled,
+// it can be used with assert/require, i.e. assert.True(mock.AllMocksCalled())
 func (m *httpClientMock) AllMocksCalled() bool {
 	result := true
 	result = result && (m.DoFunc == nil || atomic.LoadUint64(&m.DoCounter) > 0)
