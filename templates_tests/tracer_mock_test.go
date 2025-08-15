@@ -15,7 +15,7 @@ import (
 	testify_assert "github.com/stretchr/testify/assert"
 )
 
-//TracerMock implements github.com/opentracing/opentracing-go.Tracer
+// TracerMock implements github.com/opentracing/opentracing-go.Tracer
 type TracerMock struct {
 	t minimock.Tester
 
@@ -35,7 +35,7 @@ type TracerMock struct {
 	StartSpanMock       mTracerMockStartSpan
 }
 
-//NewTracerMock returns a mock for github.com/opentracing/opentracing-go.Tracer
+// NewTracerMock returns a mock for github.com/opentracing/opentracing-go.Tracer
 func NewTracerMock(t minimock.Tester) *TracerMock {
 	m := &TracerMock{t: t}
 
@@ -55,19 +55,19 @@ type mTracerMockExtract struct {
 	mockExpectations *TracerMockExtractParams
 }
 
-//TracerMockExtractParams represents input parameters of the Tracer.Extract
+// TracerMockExtractParams represents input parameters of the Tracer.Extract
 type TracerMockExtractParams struct {
 	p  interface{}
 	p1 interface{}
 }
 
-//Expect sets up expected params for the Tracer.Extract
+// Expect sets up expected params for the Tracer.Extract
 func (m *mTracerMockExtract) Expect(p interface{}, p1 interface{}) *mTracerMockExtract {
 	m.mockExpectations = &TracerMockExtractParams{p, p1}
 	return m
 }
 
-//Return sets up a mock for Tracer.Extract to return Return's arguments
+// Return sets up a mock for Tracer.Extract to return Return's arguments
 func (m *mTracerMockExtract) Return(r opentracing.SpanContext, r1 error) *TracerMock {
 	m.mock.ExtractFunc = func(p interface{}, p1 interface{}) (opentracing.SpanContext, error) {
 		return r, r1
@@ -75,13 +75,13 @@ func (m *mTracerMockExtract) Return(r opentracing.SpanContext, r1 error) *Tracer
 	return m.mock
 }
 
-//Set uses given function f as a mock of Tracer.Extract method
+// Set uses given function f as a mock of Tracer.Extract method
 func (m *mTracerMockExtract) Set(f func(p interface{}, p1 interface{}) (r opentracing.SpanContext, r1 error)) *TracerMock {
 	m.mock.ExtractFunc = f
 	return m.mock
 }
 
-//Extract implements github.com/opentracing/opentracing-go.Tracer interface
+// Extract implements github.com/opentracing/opentracing-go.Tracer interface
 func (m *TracerMock) Extract(p interface{}, p1 interface{}) (r opentracing.SpanContext, r1 error) {
 	atomic.AddUint64(&m.ExtractPreCounter, 1)
 	defer atomic.AddUint64(&m.ExtractCounter, 1)
@@ -106,12 +106,12 @@ func (m *TracerMock) Extract(p interface{}, p1 interface{}) (r opentracing.SpanC
 	return m.ExtractFunc(p, p1)
 }
 
-//ExtractMinimockCounter returns a count of TracerMock.ExtractFunc invocations
+// ExtractMinimockCounter returns a count of TracerMock.ExtractFunc invocations
 func (m *TracerMock) ExtractMinimockCounter() uint64 {
 	return atomic.LoadUint64(&m.ExtractCounter)
 }
 
-//ExtractMinimockPreCounter returns the value of TracerMock.Extract invocations
+// ExtractMinimockPreCounter returns the value of TracerMock.Extract invocations
 func (m *TracerMock) ExtractMinimockPreCounter() uint64 {
 	return atomic.LoadUint64(&m.ExtractPreCounter)
 }
@@ -121,20 +121,20 @@ type mTracerMockInject struct {
 	mockExpectations *TracerMockInjectParams
 }
 
-//TracerMockInjectParams represents input parameters of the Tracer.Inject
+// TracerMockInjectParams represents input parameters of the Tracer.Inject
 type TracerMockInjectParams struct {
 	p  opentracing.SpanContext
 	p1 interface{}
 	p2 interface{}
 }
 
-//Expect sets up expected params for the Tracer.Inject
+// Expect sets up expected params for the Tracer.Inject
 func (m *mTracerMockInject) Expect(p opentracing.SpanContext, p1 interface{}, p2 interface{}) *mTracerMockInject {
 	m.mockExpectations = &TracerMockInjectParams{p, p1, p2}
 	return m
 }
 
-//Return sets up a mock for Tracer.Inject to return Return's arguments
+// Return sets up a mock for Tracer.Inject to return Return's arguments
 func (m *mTracerMockInject) Return(r error) *TracerMock {
 	m.mock.InjectFunc = func(p opentracing.SpanContext, p1 interface{}, p2 interface{}) error {
 		return r
@@ -142,13 +142,13 @@ func (m *mTracerMockInject) Return(r error) *TracerMock {
 	return m.mock
 }
 
-//Set uses given function f as a mock of Tracer.Inject method
+// Set uses given function f as a mock of Tracer.Inject method
 func (m *mTracerMockInject) Set(f func(p opentracing.SpanContext, p1 interface{}, p2 interface{}) (r error)) *TracerMock {
 	m.mock.InjectFunc = f
 	return m.mock
 }
 
-//Inject implements github.com/opentracing/opentracing-go.Tracer interface
+// Inject implements github.com/opentracing/opentracing-go.Tracer interface
 func (m *TracerMock) Inject(p opentracing.SpanContext, p1 interface{}, p2 interface{}) (r error) {
 	atomic.AddUint64(&m.InjectPreCounter, 1)
 	defer atomic.AddUint64(&m.InjectCounter, 1)
@@ -173,12 +173,12 @@ func (m *TracerMock) Inject(p opentracing.SpanContext, p1 interface{}, p2 interf
 	return m.InjectFunc(p, p1, p2)
 }
 
-//InjectMinimockCounter returns a count of TracerMock.InjectFunc invocations
+// InjectMinimockCounter returns a count of TracerMock.InjectFunc invocations
 func (m *TracerMock) InjectMinimockCounter() uint64 {
 	return atomic.LoadUint64(&m.InjectCounter)
 }
 
-//InjectMinimockPreCounter returns the value of TracerMock.Inject invocations
+// InjectMinimockPreCounter returns the value of TracerMock.Inject invocations
 func (m *TracerMock) InjectMinimockPreCounter() uint64 {
 	return atomic.LoadUint64(&m.InjectPreCounter)
 }
@@ -188,19 +188,19 @@ type mTracerMockStartSpan struct {
 	mockExpectations *TracerMockStartSpanParams
 }
 
-//TracerMockStartSpanParams represents input parameters of the Tracer.StartSpan
+// TracerMockStartSpanParams represents input parameters of the Tracer.StartSpan
 type TracerMockStartSpanParams struct {
 	p  string
 	p1 []opentracing.StartSpanOption
 }
 
-//Expect sets up expected params for the Tracer.StartSpan
+// Expect sets up expected params for the Tracer.StartSpan
 func (m *mTracerMockStartSpan) Expect(p string, p1 ...opentracing.StartSpanOption) *mTracerMockStartSpan {
 	m.mockExpectations = &TracerMockStartSpanParams{p, p1}
 	return m
 }
 
-//Return sets up a mock for Tracer.StartSpan to return Return's arguments
+// Return sets up a mock for Tracer.StartSpan to return Return's arguments
 func (m *mTracerMockStartSpan) Return(r opentracing.Span) *TracerMock {
 	m.mock.StartSpanFunc = func(p string, p1 ...opentracing.StartSpanOption) opentracing.Span {
 		return r
@@ -208,13 +208,13 @@ func (m *mTracerMockStartSpan) Return(r opentracing.Span) *TracerMock {
 	return m.mock
 }
 
-//Set uses given function f as a mock of Tracer.StartSpan method
+// Set uses given function f as a mock of Tracer.StartSpan method
 func (m *mTracerMockStartSpan) Set(f func(p string, p1 ...opentracing.StartSpanOption) (r opentracing.Span)) *TracerMock {
 	m.mock.StartSpanFunc = f
 	return m.mock
 }
 
-//StartSpan implements github.com/opentracing/opentracing-go.Tracer interface
+// StartSpan implements github.com/opentracing/opentracing-go.Tracer interface
 func (m *TracerMock) StartSpan(p string, p1 ...opentracing.StartSpanOption) (r opentracing.Span) {
 	atomic.AddUint64(&m.StartSpanPreCounter, 1)
 	defer atomic.AddUint64(&m.StartSpanCounter, 1)
@@ -239,18 +239,18 @@ func (m *TracerMock) StartSpan(p string, p1 ...opentracing.StartSpanOption) (r o
 	return m.StartSpanFunc(p, p1...)
 }
 
-//StartSpanMinimockCounter returns a count of TracerMock.StartSpanFunc invocations
+// StartSpanMinimockCounter returns a count of TracerMock.StartSpanFunc invocations
 func (m *TracerMock) StartSpanMinimockCounter() uint64 {
 	return atomic.LoadUint64(&m.StartSpanCounter)
 }
 
-//StartSpanMinimockPreCounter returns the value of TracerMock.StartSpan invocations
+// StartSpanMinimockPreCounter returns the value of TracerMock.StartSpan invocations
 func (m *TracerMock) StartSpanMinimockPreCounter() uint64 {
 	return atomic.LoadUint64(&m.StartSpanPreCounter)
 }
 
-//ValidateCallCounters checks that all mocked methods of the interface have been called at least once
-//Deprecated: please use MinimockFinish method or use Finish method of minimock.Controller
+// ValidateCallCounters checks that all mocked methods of the interface have been called at least once
+// Deprecated: please use MinimockFinish method or use Finish method of minimock.Controller
 func (m *TracerMock) ValidateCallCounters() {
 
 	if m.ExtractFunc != nil && atomic.LoadUint64(&m.ExtractCounter) == 0 {
@@ -267,19 +267,13 @@ func (m *TracerMock) ValidateCallCounters() {
 
 }
 
-//CheckMocksCalled checks that all mocked methods of the interface have been called at least once
-//Deprecated: please use MinimockFinish method or use Finish method of minimock.Controller
-func (m *TracerMock) CheckMocksCalled() {
-	m.Finish()
-}
-
-//Finish checks that all mocked methods of the interface have been called at least once
-//Deprecated: please use MinimockFinish or use Finish method of minimock.Controller
+// Finish checks that all mocked methods of the interface have been called at least once
+// Deprecated: please use MinimockFinish or use Finish method of minimock.Controller
 func (m *TracerMock) Finish() {
 	m.MinimockFinish()
 }
 
-//MinimockFinish checks that all mocked methods of the interface have been called at least once
+// MinimockFinish checks that all mocked methods of the interface have been called at least once
 func (m *TracerMock) MinimockFinish() {
 
 	if m.ExtractFunc != nil && atomic.LoadUint64(&m.ExtractCounter) == 0 {
@@ -296,14 +290,14 @@ func (m *TracerMock) MinimockFinish() {
 
 }
 
-//Wait waits for all mocked methods to be called at least once
-//Deprecated: please use MinimockWait or use Wait method of minimock.Controller
+// Wait waits for all mocked methods to be called at least once
+// Deprecated: please use MinimockWait or use Wait method of minimock.Controller
 func (m *TracerMock) Wait(timeout time.Duration) {
 	m.MinimockWait(timeout)
 }
 
-//MinimockWait waits for all mocked methods to be called at least once
-//this method is called by minimock.Controller
+// MinimockWait waits for all mocked methods to be called at least once
+// this method is called by minimock.Controller
 func (m *TracerMock) MinimockWait(timeout time.Duration) {
 	timeoutCh := time.After(timeout)
 	for {
@@ -339,8 +333,8 @@ func (m *TracerMock) MinimockWait(timeout time.Duration) {
 	}
 }
 
-//AllMocksCalled returns true if all mocked methods were called before the execution of AllMocksCalled,
-//it can be used with assert/require, i.e. assert.True(mock.AllMocksCalled())
+// AllMocksCalled returns true if all mocked methods were called before the execution of AllMocksCalled,
+// it can be used with assert/require, i.e. assert.True(mock.AllMocksCalled())
 func (m *TracerMock) AllMocksCalled() bool {
 
 	if m.ExtractFunc != nil && atomic.LoadUint64(&m.ExtractCounter) == 0 {

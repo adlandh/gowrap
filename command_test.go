@@ -82,7 +82,6 @@ func TestGetCommand(t *testing.T) {
 
 func TestUsage(t *testing.T) {
 	mc := minimock.NewController(t)
-	defer mc.Finish()
 
 	w := NewWriterMock(mc).WriteMock.Return(0, nil)
 	assert.NoError(t, Usage(w))

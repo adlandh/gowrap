@@ -269,7 +269,6 @@ func TestLoader_get(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			mc := minimock.NewController(t)
-			defer mc.Finish()
 
 			receiver := tt.init(mc)
 

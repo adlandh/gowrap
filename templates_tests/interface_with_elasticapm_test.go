@@ -31,7 +31,6 @@ func TestTestInterfaceWithElasticAPMTracing_F(t *testing.T) {
 		wrapped := NewTestInterfaceAPMTracing(impl)
 
 		mc := minimock.NewController(t)
-		defer mc.Finish()
 
 		elasticAPM := NewElasticAPMMock(mc)
 		ctx := context.Background()
@@ -57,7 +56,6 @@ func TestTestInterfaceWithElasticAPMTracing_F(t *testing.T) {
 		wrapped := NewTestInterfaceAPMTracing(impl)
 
 		mc := minimock.NewController(t)
-		defer mc.Finish()
 
 		elasticAPM := NewElasticAPMMock(mc)
 		ctx := context.Background()
@@ -85,7 +83,6 @@ func TestTestInterfaceWithElasticAPMTracing_F(t *testing.T) {
 		wrapped := NewTestInterfaceAPMTracing(impl)
 
 		mc := minimock.NewController(t)
-		defer mc.Finish()
 
 		elasticAPM := NewElasticAPMMock(mc)
 		ctx := context.Background()
@@ -108,7 +105,6 @@ func TestTestInterfaceWithElasticAPMTracing_F(t *testing.T) {
 		wrapped := NewTestInterfaceAPMTracing(impl, TestInterfaceAPMTracingWithSpanType("test_set_span_type"))
 
 		mc := minimock.NewController(t)
-		defer mc.Finish()
 
 		elasticAPM := NewElasticAPMMock(mc)
 		ctx := context.Background()

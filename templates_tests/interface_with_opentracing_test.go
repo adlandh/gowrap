@@ -16,7 +16,6 @@ func TestTestInterfaceWithTracing_F(t *testing.T) {
 		wrapped := NewTestInterfaceWithTracing(impl, "test")
 
 		mc := minimock.NewController(t)
-		defer mc.Finish()
 
 		span := NewSpanMock(mc)
 		span.FinishMock.Return()
@@ -37,7 +36,6 @@ func TestTestInterfaceWithTracing_F(t *testing.T) {
 		wrapped := NewTestInterfaceWithTracing(impl, "test")
 
 		mc := minimock.NewController(t)
-		defer mc.Finish()
 
 		span := NewSpanMock(mc)
 		span.FinishMock.Return()

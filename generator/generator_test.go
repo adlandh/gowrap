@@ -770,7 +770,6 @@ func test(l *logrus.Logger) {}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			mc := minimock.NewController(t)
-			defer mc.Finish()
 
 			tArgs := tt.args(mc)
 			receiver := tt.init(mc)

@@ -17,7 +17,6 @@ func TestTestInterfaceWithOpenCensusTracing_F(t *testing.T) {
 		wrapped := NewTestInterfaceWithOpenCensus(impl, "test")
 
 		mc := minimock.NewController(t)
-		defer mc.Finish()
 
 		span := NewSpanInterfaceMock(mc)
 		span.EndMock.Return()
@@ -40,7 +39,6 @@ func TestTestInterfaceWithOpenCensusTracing_F(t *testing.T) {
 		wrapped := NewTestInterfaceWithOpenCensus(impl, "test")
 
 		mc := minimock.NewController(t)
-		defer mc.Finish()
 
 		span := NewSpanInterfaceMock(mc)
 		span.AddAttributesMock.Expect(

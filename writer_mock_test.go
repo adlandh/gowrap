@@ -13,7 +13,7 @@ import (
 	testify_assert "github.com/stretchr/testify/assert"
 )
 
-//WriterMock implements io.Writer
+// WriterMock implements io.Writer
 type WriterMock struct {
 	t minimock.Tester
 
@@ -23,7 +23,7 @@ type WriterMock struct {
 	WriteMock       mWriterMockWrite
 }
 
-//NewWriterMock returns a mock for io.Writer
+// NewWriterMock returns a mock for io.Writer
 func NewWriterMock(t minimock.Tester) *WriterMock {
 	m := &WriterMock{t: t}
 
@@ -41,18 +41,18 @@ type mWriterMockWrite struct {
 	mockExpectations *WriterMockWriteParams
 }
 
-//WriterMockWriteParams represents input parameters of the Writer.Write
+// WriterMockWriteParams represents input parameters of the Writer.Write
 type WriterMockWriteParams struct {
 	p []byte
 }
 
-//Expect sets up expected params for the Writer.Write
+// Expect sets up expected params for the Writer.Write
 func (m *mWriterMockWrite) Expect(p []byte) *mWriterMockWrite {
 	m.mockExpectations = &WriterMockWriteParams{p}
 	return m
 }
 
-//Return sets up a mock for Writer.Write to return Return's arguments
+// Return sets up a mock for Writer.Write to return Return's arguments
 func (m *mWriterMockWrite) Return(r int, r1 error) *WriterMock {
 	m.mock.WriteFunc = func(p []byte) (int, error) {
 		return r, r1
@@ -60,13 +60,13 @@ func (m *mWriterMockWrite) Return(r int, r1 error) *WriterMock {
 	return m.mock
 }
 
-//Set uses given function f as a mock of Writer.Write method
+// Set uses given function f as a mock of Writer.Write method
 func (m *mWriterMockWrite) Set(f func(p []byte) (r int, r1 error)) *WriterMock {
 	m.mock.WriteFunc = f
 	return m.mock
 }
 
-//Write implements io.Writer interface
+// Write implements io.Writer interface
 func (m *WriterMock) Write(p []byte) (r int, r1 error) {
 	atomic.AddUint64(&m.WritePreCounter, 1)
 	defer atomic.AddUint64(&m.WriteCounter, 1)
@@ -91,18 +91,18 @@ func (m *WriterMock) Write(p []byte) (r int, r1 error) {
 	return m.WriteFunc(p)
 }
 
-//WriteMinimockCounter returns a count of WriterMock.WriteFunc invocations
+// WriteMinimockCounter returns a count of WriterMock.WriteFunc invocations
 func (m *WriterMock) WriteMinimockCounter() uint64 {
 	return atomic.LoadUint64(&m.WriteCounter)
 }
 
-//WriteMinimockPreCounter returns the value of WriterMock.Write invocations
+// WriteMinimockPreCounter returns the value of WriterMock.Write invocations
 func (m *WriterMock) WriteMinimockPreCounter() uint64 {
 	return atomic.LoadUint64(&m.WritePreCounter)
 }
 
-//ValidateCallCounters checks that all mocked methods of the interface have been called at least once
-//Deprecated: please use MinimockFinish method or use Finish method of minimock.Controller
+// ValidateCallCounters checks that all mocked methods of the interface have been called at least once
+// Deprecated: please use MinimockFinish method or use Finish method of minimock.Controller
 func (m *WriterMock) ValidateCallCounters() {
 
 	if m.WriteFunc != nil && atomic.LoadUint64(&m.WriteCounter) == 0 {
@@ -111,19 +111,13 @@ func (m *WriterMock) ValidateCallCounters() {
 
 }
 
-//CheckMocksCalled checks that all mocked methods of the interface have been called at least once
-//Deprecated: please use MinimockFinish method or use Finish method of minimock.Controller
-func (m *WriterMock) CheckMocksCalled() {
-	m.Finish()
-}
-
-//Finish checks that all mocked methods of the interface have been called at least once
-//Deprecated: please use MinimockFinish or use Finish method of minimock.Controller
+// Finish checks that all mocked methods of the interface have been called at least once
+// Deprecated: please use MinimockFinish or use Finish method of minimock.Controller
 func (m *WriterMock) Finish() {
 	m.MinimockFinish()
 }
 
-//MinimockFinish checks that all mocked methods of the interface have been called at least once
+// MinimockFinish checks that all mocked methods of the interface have been called at least once
 func (m *WriterMock) MinimockFinish() {
 
 	if m.WriteFunc != nil && atomic.LoadUint64(&m.WriteCounter) == 0 {
@@ -132,14 +126,14 @@ func (m *WriterMock) MinimockFinish() {
 
 }
 
-//Wait waits for all mocked methods to be called at least once
-//Deprecated: please use MinimockWait or use Wait method of minimock.Controller
+// Wait waits for all mocked methods to be called at least once
+// Deprecated: please use MinimockWait or use Wait method of minimock.Controller
 func (m *WriterMock) Wait(timeout time.Duration) {
 	m.MinimockWait(timeout)
 }
 
-//MinimockWait waits for all mocked methods to be called at least once
-//this method is called by minimock.Controller
+// MinimockWait waits for all mocked methods to be called at least once
+// this method is called by minimock.Controller
 func (m *WriterMock) MinimockWait(timeout time.Duration) {
 	timeoutCh := time.After(timeout)
 	for {
@@ -165,8 +159,8 @@ func (m *WriterMock) MinimockWait(timeout time.Duration) {
 	}
 }
 
-//AllMocksCalled returns true if all mocked methods were called before the execution of AllMocksCalled,
-//it can be used with assert/require, i.e. assert.True(mock.AllMocksCalled())
+// AllMocksCalled returns true if all mocked methods were called before the execution of AllMocksCalled,
+// it can be used with assert/require, i.e. assert.True(mock.AllMocksCalled())
 func (m *WriterMock) AllMocksCalled() bool {
 
 	if m.WriteFunc != nil && atomic.LoadUint64(&m.WriteCounter) == 0 {
